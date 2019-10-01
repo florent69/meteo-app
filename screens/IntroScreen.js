@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Image } from 'react-native';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {View, Text, Dimensions, AsynStorage } from 'react-native';
-import { setPlaneDetection } from 'expo/build/AR';
+import {View, Text, Dimensions, AsyncStorage } from 'react-native';
 
 const { width }= Dimensions.get('window');
 
@@ -15,8 +15,13 @@ container: {
     alignItems: 'center',
 },
 nameStyle: {
-    color: 'red',
-    fontSize: 25,
+    color: '#D90022',
+    fontSize: 35,
+    fontWeight: 'bold',
+},
+questionStyle: {
+    color: '#274288',
+    fontSize: 35,
     fontWeight: 'bold',
 }
 };
@@ -39,7 +44,8 @@ const IntroScreen = props => {
 
     return(
         <View style={styleSheet.container}>
-            <Text style={styleSheet.nameStyle}>{name}</Text>
+            <Image source={require("../assets/miss.jpg")} style={{width:300, height:600}}/>
+            <Text style={styleSheet.nameStyle}>Hi {name}!!</Text><Text style={styleSheet.questionStyle}>How are you today ?</Text>
         </View>
     );
 }
@@ -50,4 +56,4 @@ IntroScreen.propTypes = {
     }).isRequired,
 };
     
-export default IntroScreen;
+export default connect()(IntroScreen);

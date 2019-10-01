@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import { Image } from 'react-native';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {View, Text, TextInput, Button, Dimensions, AsynStorage } from 'react-native';
+import {View, Text, TextInput, Button, Dimensions, AsyncStorage } from 'react-native';
+import {useDispatch} from 'react-redux';
 
-const { width }= Dimensions.get('window');
+// const { width }= Dimensions.get('window');
 
 const styleSheet = {
 container: {
-    width: width,
+    // width: width,
     flex:1,
     flexDirection: 'column',
     justifyContent: 'center',
@@ -18,10 +19,11 @@ label: {
     fontSize: 18,
 },
 input: {
-    width: '100%',
+    width: '80%',
     height: 40,
-    borderColor: 'gray',
+    borderColor: '#274288',
     borderWidth: 1,
+    marginBottom: 10,
 },
 };
 
@@ -29,16 +31,19 @@ const IntroFormScreen = props => {
     async function handleSubmit() {
         if(name !== '') {
             await AsyncStorage.setItem('name', name);
-            NavigationPreloadManager.navigate('Welcome');
+            dispatch.app.setName(name);
+            props.navigation.navigate('Welcome');
+            
         }
     }
-    
+
     const [name, setName] = useState('');
-    const {dispatch, navigation } = props;
+    const dispatch = useDispatch();
 
     return(
         <View style={styleSheet.container}>
-            <Text style={styleSheet.label}>Prénom</Text>
+            <Image source={require("../assets/meteo.png")} style={{width:100, height:100}}/>
+            <Text style={styleSheet.label}>Your name please!!</Text>
             <TextInput
                 style={styleSheet.input}
                 onChangeText={(text) => setName(text)}
@@ -47,17 +52,17 @@ const IntroFormScreen = props => {
             <Button
                 onPress={handleSubmit}
                 title="OK"
-                color="#841584"
+                color="#274288"
             />
         </View>
     );
 }
 
 IntroFormScreen.protoTypes = {
-    dispatch: PropTypes.func.isRequired,
+
     navigation: PropTypes.shape({
         navigate: PropTypes.func,
     }).isRequired,
 };
 
-export default connect() (IntroFormScreen);
+export default IntroFormScreen;

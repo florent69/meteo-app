@@ -1,21 +1,26 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {Activityindicator, StatusBar, View, AsynStorage } from 'react-native';
+import {ActivityIndicator, StatusBar, View, AsyncStorage } from 'react-native';
+import {useDispatch} from 'react-redux';
 
 const AuthLoadingScreen = props => {
 
     _bootstrapAsync = async () => {
         const userToken = await AsyncStorage.getItem('name');
+        dispatch.app.setName(userToken);
         props.navigation.navigate(userToken ? 'App' : 'Auth');
+        
     };
 
     useEffect(() => {
         _bootstrapAsync();
     }, []);
 
+    const dispatch = useDispatch();
+
     return (
         <View>
-            <Activityindicator/>
+            <ActivityIndicator/>
             <StatusBar barStyle="default"/>
         </View>
     );
@@ -27,4 +32,4 @@ AuthLoadingScreen.propTypes = {
     }).isRequired
 };
 
-export default AuthLoadingScreen;s
+export default AuthLoadingScreen;

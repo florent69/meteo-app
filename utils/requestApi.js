@@ -1,5 +1,4 @@
 const baseUrl = 'https://api.openweathermap.org/data/2.5/';
-//const apiKey = '2d28b027349f46a002a250facb765d19';
 import {apiKey} from '../ApiKeys';
 
 export function requestGet(endPoint, query='') {

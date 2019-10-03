@@ -1,35 +1,42 @@
-import React from 'react';
-import { View, Button, TextInput, Dimensions } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-
-const { width }= Dimensions.get('window');
+import React, { useState, useEffect } from 'react'
+import { Button, TextInput, AsyncStorage } from 'react-native';
+import { connect, useSelector, useDispatch } from 'react-redux';
+import style from '../Style'; 
 
 const Search = props => {
-    async function handleSubmit() {
-        if(name !== '') {
-            await AsyncStorage.setItem('city', city);
-            dispatch.app.setCity(city);
-        }
+    
+    async function submitCity() {
+        await AsyncStorage.setItem('cities', cities);
+        dispatch.app.setCities(cities);
     }
-    const city = useSelector(state=>state.app.city);
+
+    useEffect(() => {
+        //console.log('toto: ', props);
+        if(cities) {
+            setCities(cities);
+            console.log('From Search: ', props)
+        }
+    });
+
     const dispatch = useDispatch();
+    const [cities, setCities] = useState('');
 
     return (
-        <View style={{width: width, justifyContent: 'center', alignItems: 'center'}}>
+        <>
             <TextInput
-                style={{width: '80%', height: 40, borderColor: '#274288', borderWidth: 1}}
-                onChangeText={(text) => setCity(text)}
-                value={city}
+                style={style.input2}  
+                onChangeText={(text) => setCities(text)}
+                value={cities}
             />
             <Button
-                onPress={handleSubmit}
-                title="OK"
-                color="#274288"
+                onPress={submitCity}
+                title="Search"
+                color={style.colorGold.color}
             />
-        </View>
+        </>
     );
 }
 
 Search.propTypes = {};
 
-export default Search;
+export default connect(({app}) => ({app}))(Search);

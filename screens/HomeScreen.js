@@ -1,41 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Image, View, Text, Dimensions } from 'react-native';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import * as Location from 'expo-location';
-import * as Permissions from 'expo-permissions';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { weatherConditions } from '../utils/WeatherConditions';
-
-
-const { width } = Dimensions.get('window');
-
-const styleSheet = {
-container: {
-    width: width,
-    flex:1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-},
-textStyle: {
-    color: '#FFF',
-    fontSize: 50,
-    fontWeight: 'bold',
-},
-tempStyle: {
-    color: '#FFF',
-    fontSize: 80,
-    fontWeight: 'bold',
-},
-erroStyle: {
-    color: 'red',
-    fontSize: 25,
-    fontWeight: 'bold,'
-},
-};
-
-
+import React, { useState, useEffect } from 'react'
+import { View, Text } from 'react-native'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import * as Location from 'expo-location'
+import * as Permissions from 'expo-permissions'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { weatherConditions } from '../utils/WeatherConditions'
+import style from '../Style'
 
 const HomeScreen = props => {
 
@@ -46,21 +17,22 @@ const HomeScreen = props => {
         }
 
         let location = await Location.getCurrentPositionAsync({});
-        dispatch({type: 'app/getMeteoInformations', payload: location});
-    };
+       dispatch({type: 'app/getMeteoInformations', payload: location});
+    }; 
     
     useEffect(() => {
         _getLocationAsync();
     }, []);
 
     useEffect(() => {
-        //console.log('toto: ',informations.weather);
         if(informations.main) {
             setNameCity(informations.name);
-            setTemp(informations.main.temp);
+            setTemp(Math.round(informations.main.temp));
             setWeather(weatherConditions[informations.weather[0].main].icon);
             setWeatherColor(weatherConditions[informations.weather[0].main].color);
         }
+    // console.log('From HomeScreen: ',informations);
+
     });
 
     const { dispatch, app: {informations} } = props;
@@ -71,11 +43,11 @@ const HomeScreen = props => {
     const [weatherColor, setWeatherColor] = useState('');
 
     return(
-    <View style={styleSheet.container} backgroundColor={weatherColor ? weatherColor : null}>
+    <View style={style.container} backgroundColor={weatherColor ? weatherColor : null}>
         <MaterialCommunityIcons size={200} name={weather ? weather : 'loading'} color='#FFF' />
-        <Text style={styleSheet.textStyle}>{nameCity}</Text>
-        <Text style={styleSheet.tempStyle}>{`${temp}°`}</Text>
-        {error !== '' && <Text style={styleSheet.erroStyle}>{error}</Text>}
+        <Text style={style.textStyle}>{nameCity}</Text>
+        <Text style={style.tempStyle}>{`${temp}°`}</Text>
+        {error !== '' && <Text style={style.erroStyle}>{error}</Text>}
     </View>
     );
 }

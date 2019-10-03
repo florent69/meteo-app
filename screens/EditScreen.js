@@ -1,13 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import Login from '../components/Login';
+import style from '../Style'
 
-const EditScreen = props => (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{color: 'black', fontSize: 25, fontWeight: 'bold' }}>Edit Screen</Text>
-      </View>
-);
+const EditScreen = props => {
+  async function handleNavigate() {  
+    props.navigation.navigate('Welcome');
+}
+return (
+<View style={style.container}>
+    <Login 
+    handleNavigate={handleNavigate}
+    isEdit={true}
+    />
+</View>
+  );
+};
 
-EditScreen.propTypes = {};
+EditScreen.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func,
+  }).isRequired,
+};
 
 export default EditScreen;

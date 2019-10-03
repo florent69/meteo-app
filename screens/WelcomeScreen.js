@@ -2,31 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Image } from 'react-native';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {View, Text, Dimensions, AsyncStorage } from 'react-native';
+import {View, Text, AsyncStorage } from 'react-native';
+import style from '../Style'
 
-const { width }= Dimensions.get('window');
-
-const styleSheet = {
-container: {
-    width: width,
-    flex:1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-},
-nameStyle: {
-    color: '#D90022',
-    fontSize: 35,
-    fontWeight: 'bold',
-},
-questionStyle: {
-    color: '#274288',
-    fontSize: 35,
-    fontWeight: 'bold',
-}
-};
-
-const IntroScreen = props => {
+const WelcomeScreen = props => {
     useEffect(() => {
         async function getName() {
             const temp = await AsyncStorage.getItem('name');
@@ -43,17 +22,17 @@ const IntroScreen = props => {
     const [name, setName] = useState('');
 
     return(
-        <View style={styleSheet.container}>
+        <View style={style.container}>
             <Image source={require("../assets/miss.jpg")} style={{width:300, height:600}}/>
-            <Text style={styleSheet.nameStyle}>Hi {name}!!</Text><Text style={styleSheet.questionStyle}>How are you today ?</Text>
+            <Text style={style.nameStyle}>Hi {name}!!</Text><Text style={style.questionStyle}>How are you today ?</Text>
         </View>
     );
 }
 
-IntroScreen.propTypes = {
+WelcomeScreen.propTypes = {
     navigation: PropTypes.shape({
         navigate: PropTypes.func,
     }).isRequired,
 };
     
-export default connect()(IntroScreen);
+export default connect()(WelcomeScreen);

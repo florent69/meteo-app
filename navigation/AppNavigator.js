@@ -7,8 +7,8 @@ import HomeScreen from '../screens/HomeScreen';
 import EditScreen from '../screens/EditScreen';
 import AddCityScreen from '../screens/AddCityScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen';
-import IntroScreen from '../screens/IntroScreen';
-import IntroFormScreen from '../screens/IntroFormScreen';
+import WelcomeScreen from '../screens/WelcomeScreen';
+import SignInScreen from '../screens/SignInScreen';
 
 
 const AppStack = createBottomTabNavigator(
@@ -50,7 +50,7 @@ const AppStack = createBottomTabNavigator(
 }
   );
 
-const AuthStack = createStackNavigator({ SignIn: IntroFormScreen, Welcome: IntroScreen });
+const AuthStack = createStackNavigator({ SignIn: SignInScreen, Welcome: WelcomeScreen });
 
 export default createAppContainer(
   createSwitchNavigator(

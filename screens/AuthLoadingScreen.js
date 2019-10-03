@@ -8,8 +8,7 @@ const AuthLoadingScreen = props => {
     _bootstrapAsync = async () => {
         const userToken = await AsyncStorage.getItem('name');
         dispatch.app.setName(userToken);
-        props.navigation.navigate(userToken ? 'App' : 'Auth');
-        
+        props.navigation.navigate(userToken ? 'App' : 'Auth');  
     };
 
     useEffect(() => {

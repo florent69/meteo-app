@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="933c9cda-3493-4063-a476-10db4db0679c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/screens/EditScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/EditScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/HomeScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/IntroFormScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/IntroFormScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Search.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -57,7 +56,7 @@
             <entry file="file://$PROJECT_DIR$/screens/AddCityScreen.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="255">
-                  <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+                  <caret line="20" column="58" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
                 </state>
               </provider>
             </entry>
@@ -87,8 +86,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/models/appModel.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="153">
-                  <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+                <state relative-caret-position="170">
+                  <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
                 </state>
               </provider>
             </entry>
@@ -206,7 +205,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.11485775" />
@@ -279,7 +277,7 @@
     <entry file="file://$PROJECT_DIR$/screens/AddCityScreen.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+          <caret line="20" column="58" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
         </state>
       </provider>
     </entry>
@@ -292,8 +290,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/appModel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+        <state relative-caret-position="170">
+          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
         </state>
       </provider>
     </entry>

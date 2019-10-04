@@ -2,41 +2,31 @@ import React, {useState, useEffect, useCallback} from 'react'
 import { TouchableOpacity, FlatList, Text } from 'react-native'
 import { connect } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { weatherConditions } from '../utils/WeatherConditions'
 import style from '../Style'
 
 const List = props => {
 
+  const [selected, setSelected] = useState(new Map());
+  const DATA = props.app.cities;
+  const [weather, setWeather] = useState('');
 
-    const [selected, setSelected] = useState(new Map());
-
-    const DATA = [
-        
-            {
-                id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-                name: 'First Item',
-              },
-              {
-                id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-                name: 'Second Item',
-              },
-              {
-                id: '58694a0f-3da1-471f-bd96-145571e29d72',
-                name: 'Third Item',
-              },
-        
-    ];
-    //console.log('List:' , DATA);
-
-    const onSelect = useCallback(
+  const onSelect = useCallback(
         id => {
           const newSelected = new Map(selected);
           newSelected.set(id, !selected.get(id));
           setSelected(newSelected);
         },
         [selected],
-    );
+  );
+  
+  useEffect(() => {
+    if(DATA.main) {
+        setWeather(weatherConditions[DATA.weather[0].main].icon);
+    }
+  });
 
-    function Item({ id, title, /*temp,*/ selected, onSelect }) {
+  function Item({ id, title, temp, selected, onSelect }) {
         return (
           <TouchableOpacity
             onPress={() => onSelect(id)}
@@ -45,8 +35,8 @@ const List = props => {
             ]}
           >
             <Text style={style.textStyle}>{title}</Text>
-            {/* <Text style={style.textStyle}>{temp}°</Text> */}
-            {/* <MaterialCommunityIcons size={40} name={weather ? weather : 'loading'} color='#FFF' />  */}
+             <Text style={style.textStyle}>{temp}°</Text> 
+             <MaterialCommunityIcons size={40} name={weather ? weather : null} color='#FFF' /> 
           </TouchableOpacity>
         );
       }
@@ -59,7 +49,7 @@ const List = props => {
               <Item
                 id={(item.id).toString()}
                 title={item.name}
-                // temp={Math.round(item.main.temp)}
+                temp={Math.round(item.main.temp)}
                 selected={!!selected.get((item.id).toString())}
                 onSelect={onSelect}
               />

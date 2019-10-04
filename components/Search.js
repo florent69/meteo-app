@@ -5,16 +5,19 @@ import style from '../Style';
 
 const Search = props => {
     
+    async function _getCitiesInfoAsync() {
+        dispatch({type: 'app/getMeteoInformations', payload: cities});
+    };
+    
     async function submitCity() {
+        _getCitiesInfoAsync();
         await AsyncStorage.setItem('cities', cities);
-        dispatch.app.setCities(cities);
-    }
+    };
 
     useEffect(() => {
         //console.log('toto: ', props);
         if(cities) {
             setCities(cities);
-            console.log('From Search: ', props)
         }
     });
 

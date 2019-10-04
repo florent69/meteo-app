@@ -22,12 +22,18 @@ export const app = {
     effects:(dispatch) => ({
         async getMeteoInformations(location) {
             //console.log(location);
-            if(location){
+            if(location.coords){
                 const { coords: { latitude, longitude }} = location;
                 const response = await requestGet('weather', `lat=${latitude}&lon=${longitude}`+`&units=metric`);
 
                 if (response) {
                     this.setInformations(response);
+                //console.log('From AppModel: ',response);
+                }
+            } else { 
+                const response = await requestGet('weather', `q=${location}`+`&units=metric`);
+                if (response) {
+                    this.setCities(response);
                 //console.log('From AppModel: ',response);
                 }
             }

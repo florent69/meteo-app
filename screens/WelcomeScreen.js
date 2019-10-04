@@ -23,8 +23,8 @@ const WelcomeScreen = props => {
 
     return(
         <View style={style.container}>
-            <Image source={require("../assets/miss.jpg")} style={{width:300, height:600}}/>
-            <Text style={style.nameStyle}>Hi {name}!!</Text><Text style={style.questionStyle}>How are you today ?</Text>
+            <Image source={require("../assets/goal.jpg")} style={{width:'80%', height:'80%'}}/>
+            <Text style={style.nameStyle}>Hi {name}!!</Text><Text style={style.questionStyle}>Welcome To This App!</Text>
         </View>
     );
 }
